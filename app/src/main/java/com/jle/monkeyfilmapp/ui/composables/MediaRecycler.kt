@@ -1,4 +1,4 @@
-package com.jle.monkeyfilmapp.component
+package com.jle.monkeyfilmapp.ui.composables
 
 import android.widget.Toast
 import androidx.compose.foundation.*
@@ -52,6 +52,30 @@ fun MediaListView() {
         items(getListOfMedia()) { mediaModel ->
             MediaItem(mediaModel = mediaModel) {
                 Toast.makeText(context, it.title, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+}
+
+@ExperimentalFoundationApi
+@Composable
+fun MediaListViewWithStickyHeader() {
+    val context = LocalContext.current
+    val mediaList : Map<String, List<MediaModel>> = getListOfMedia().groupBy { it.category }
+
+    LazyRow(
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        contentPadding = PaddingValues(vertical = 1.dp)
+    ) {
+        mediaList.forEach { (category, medias) ->
+            stickyHeader {
+                Text(text = category, modifier = Modifier.width(100.dp).background(Color.Transparent), fontSize = 20.sp, color = Color.Black)
+            }
+
+            items(medias) { mediaModel ->
+                MediaItem(mediaModel = mediaModel) {
+                    Toast.makeText(context, it.title, Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
@@ -168,7 +192,8 @@ fun getListOfMedia(): List<MediaModel> {
                     "con la banda.",
             catel = R.drawable.c1,
             score = 86,
-            genre = listOf("Drama", "Crimen")
+            genre = listOf("Drama", "Crimen"),
+            category = "Serie"
         ),
         MediaModel(
             id = 2,
@@ -181,7 +206,8 @@ fun getListOfMedia(): List<MediaModel> {
                     "Juan; la gaviota Sofía, y el cochero.",
             catel = R.drawable.c2,
             score = 67,
-            genre = listOf("Fantasía", "Aventura", "Familia")
+            genre = listOf("Fantasía", "Aventura", "Familia"),
+            category = "Pelicula"
         ),
         MediaModel(
             id = 3,
@@ -195,7 +221,8 @@ fun getListOfMedia(): List<MediaModel> {
                     "supervivencia.",
             catel = R.drawable.c3,
             score = 81,
-            genre = listOf("Acción", "Drama", "Ciencia ficción", "Fantasía", "Aventura")
+            genre = listOf("Acción", "Drama", "Ciencia ficción", "Fantasía", "Aventura"),
+            category = "Serie"
         ),
         MediaModel(
             id = 4,
@@ -213,7 +240,8 @@ fun getListOfMedia(): List<MediaModel> {
                 "Ciencia ficción",
                 "Fantasía",
                 "Aventura"
-            )
+            ),
+            category = "Serie"
         ),
         MediaModel(
             id = 5,
@@ -226,7 +254,8 @@ fun getListOfMedia(): List<MediaModel> {
                     "televisión estadounidense y muchos otros aspectos de la condición humana.",
             catel = R.drawable.c5,
             score = 81,
-            genre = listOf("Familia", "Animación", "Comedia")
+            genre = listOf("Familia", "Animación", "Comedia"),
+            category = "Serie"
         ),
         MediaModel(
             id = 6,
@@ -242,7 +271,8 @@ fun getListOfMedia(): List<MediaModel> {
                     "momento más terrible de sus vidas.",
             catel = R.drawable.c6,
             score = 82,
-            genre = listOf("Ciencia ficción", "Aventura")
+            genre = listOf("Ciencia ficción", "Aventura"),
+            category = "Pelicula"
         ),
         MediaModel(
             id = 7,
@@ -257,7 +287,8 @@ fun getListOfMedia(): List<MediaModel> {
                     "esfuerzos de paz entre ambos países.",
             catel = R.drawable.c7,
             score = 87,
-            genre = listOf("Animación", "Aventura", "Acción", "Comedia")
+            genre = listOf("Animación", "Aventura", "Acción", "Comedia"),
+            category = "Anime"
         ),
         MediaModel(
             id = 8,
@@ -269,7 +300,8 @@ fun getListOfMedia(): List<MediaModel> {
                     "con los animales más temibles de la creación.",
             catel = R.drawable.c8,
             score = 70,
-            genre = listOf("Ciencia ficción", "Aventura", "Acción")
+            genre = listOf("Ciencia ficción", "Aventura", "Acción"),
+            category = "Pelicula"
         ),
         MediaModel(
             id = 9,
@@ -279,7 +311,8 @@ fun getListOfMedia(): List<MediaModel> {
                     "todo el país.",
             catel = R.drawable.c9,
             score = 63,
-            genre = listOf("Fantasía", "Aventura", "Acción")
+            genre = listOf("Fantasía", "Aventura", "Acción"),
+            category = "Pelicula"
         ),
         MediaModel(
             id = 10,
@@ -293,7 +326,8 @@ fun getListOfMedia(): List<MediaModel> {
                     "Bradley Bradshaw, el hijo de su difunto amigo \"Goose\".",
             catel = R.drawable.c10,
             score = 83,
-            genre = listOf("Drama", "Acción")
+            genre = listOf("Drama", "Acción"),
+            category = "Pelicula"
         ),
     )
 }

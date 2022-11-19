@@ -9,5 +9,6 @@ data class MediaModel(
     @DrawableRes var catel: Int,
     var score: Int,
     var favorite: Boolean = false,
-    var genre: List<String>
+    var genre: List<String>,
+    var category: String
 )
