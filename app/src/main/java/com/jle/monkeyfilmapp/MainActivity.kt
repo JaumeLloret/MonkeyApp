@@ -14,6 +14,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.jle.monkeyfilmapp.home.ui.composables.MediaListView
 import com.jle.monkeyfilmapp.model.Routes
 import com.jle.monkeyfilmapp.ui.theme.MonkeyFilmAppTheme
 
@@ -26,7 +27,7 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background
                 ) {
-                    val navigationController = rememberNavController()
+                    /*val navigationController = rememberNavController()
                     NavHost(
                         navController = navigationController,
                         startDestination = Routes.ScreenOne.route
@@ -60,9 +61,9 @@ class MainActivity : ComponentActivity() {
                                 navBackStackEntry.arguments?.getString("title")
                             )
                         }
-                    }
+                    }*/
 
-
+                    MediaListView()
                 }
             }
         }

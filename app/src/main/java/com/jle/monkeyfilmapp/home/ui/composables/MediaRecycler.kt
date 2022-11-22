@@ -1,4 +1,4 @@
-package com.jle.monkeyfilmapp.ui.composables
+package com.jle.monkeyfilmapp.home.ui.composables
 
 import android.widget.Toast
 import androidx.compose.foundation.*
@@ -20,7 +20,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jle.monkeyfilmapp.R
-import com.jle.monkeyfilmapp.model.MediaModel
+import com.jle.monkeyfilmapp.home.domain.MediaModel
 import kotlinx.coroutines.launch
 
 
@@ -61,7 +61,7 @@ fun MediaListView() {
 @Composable
 fun MediaListViewWithStickyHeader() {
     val context = LocalContext.current
-    val mediaList : Map<String, List<MediaModel>> = getListOfMedia().groupBy { it.category }
+    val mediaList: Map<String, List<MediaModel>> = getListOfMedia().groupBy { it.category }
 
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -69,7 +69,11 @@ fun MediaListViewWithStickyHeader() {
     ) {
         mediaList.forEach { (category, medias) ->
             stickyHeader {
-                Text(text = category, modifier = Modifier.width(100.dp).background(Color.Transparent), fontSize = 20.sp, color = Color.Black)
+                Text(
+                    text = category, modifier = Modifier
+                        .width(100.dp)
+                        .background(Color.Transparent), fontSize = 20.sp, color = Color.Black
+                )
             }
 
             items(medias) { mediaModel ->
@@ -89,7 +93,7 @@ fun MediaListViewWithCustomControl() {
         derivedStateOf { listState.firstVisibleItemIndex > 0 }
     }
     val showForwardButton by remember {
-        derivedStateOf { listState.firstVisibleItemIndex < listState.layoutInfo.totalItemsCount - 1}
+        derivedStateOf { listState.firstVisibleItemIndex < listState.layoutInfo.totalItemsCount - 1 }
     }
     val coroutineScope = rememberCoroutineScope()
 
@@ -146,7 +150,7 @@ fun MediaItem(mediaModel: MediaModel, onItemSelected: (MediaModel) -> Unit) {
             .clickable { onItemSelected(mediaModel) }) {
         Column(modifier = Modifier.fillMaxHeight()) {
             Image(
-                painter = painterResource(id = mediaModel.catel),
+                painter = painterResource(id = getCatel(mediaModel.catel)),
                 contentDescription = mediaModel.title,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -179,6 +183,22 @@ fun MediaItem(mediaModel: MediaModel, onItemSelected: (MediaModel) -> Unit) {
     }
 }
 
+fun getCatel(id: Int): Int {
+    return when (id) {
+        1 -> R.drawable.c1
+        2 -> R.drawable.c2
+        3 -> R.drawable.c3
+        4 -> R.drawable.c4
+        5 -> R.drawable.c5
+        6 -> R.drawable.c6
+        7 -> R.drawable.c7
+        8 -> R.drawable.c8
+        9 -> R.drawable.c9
+        10 -> R.drawable.c10
+        else -> androidx.core.R.drawable.notification_bg_normal
+    }
+}
+
 fun getListOfMedia(): List<MediaModel> {
     return listOf(
         MediaModel(
@@ -190,7 +210,7 @@ fun getListOfMedia(): List<MediaModel> {
                     "llaman la atención del Inspector jefe Chester Campbell, un detective de la Real " +
                     "Policía Irlandesa que es enviado desde Belfast para limpiar la ciudad y acabar " +
                     "con la banda.",
-            catel = R.drawable.c1,
+            catel = 1,
             score = 86,
             genre = listOf("Drama", "Crimen"),
             category = "Serie"
@@ -204,7 +224,7 @@ fun getListOfMedia(): List<MediaModel> {
                     "que fabrica a Pinocho y lo trata como a su propio hijo; Pepito Grillo, que " +
                     "hace las veces de guía y “conciencia” de Pinocho; el Hada Azul; el Honrado " +
                     "Juan; la gaviota Sofía, y el cochero.",
-            catel = R.drawable.c2,
+            catel = 2,
             score = 67,
             genre = listOf("Fantasía", "Aventura", "Familia"),
             category = "Pelicula"
@@ -219,7 +239,7 @@ fun getListOfMedia(): List<MediaModel> {
                     "mundo poblado por el horror, así como las relaciones personales que se " +
                     "establecen entre ellos, en ocasiones también una amenaza para su " +
                     "supervivencia.",
-            catel = R.drawable.c3,
+            catel = 3,
             score = 81,
             genre = listOf("Acción", "Drama", "Ciencia ficción", "Fantasía", "Aventura"),
             category = "Serie"
@@ -231,7 +251,7 @@ fun getListOfMedia(): List<MediaModel> {
                     "formación de la Rebelión antes de los eventos de Rogue One: A Star Wars " +
                     "Story. La serie explora historias llenas de espionaje y atrevidas misiones " +
                     "para devolver la esperanza a una galaxia dominada por un imperio despiadado.",
-            catel = R.drawable.c4,
+            catel = 4,
             score = 81,
             genre = listOf(
                 "Acción",
@@ -252,7 +272,7 @@ fun getListOfMedia(): List<MediaModel> {
                     "Homer, Marge, Bart, Lisa, y Maggie Simpson. La trama se desarrolla en la " +
                     "ciudad ficticia de Springfield y parodia la cultura, la sociedad, la " +
                     "televisión estadounidense y muchos otros aspectos de la condición humana.",
-            catel = R.drawable.c5,
+            catel = 5,
             score = 81,
             genre = listOf("Familia", "Animación", "Comedia"),
             category = "Serie"
@@ -269,7 +289,7 @@ fun getListOfMedia(): List<MediaModel> {
                     "para impedir la destrucción del Universo. Todos estos sucesos resultan estar " +
                     "conectados cuando tres encarnaciones del mismo Doctor deben enfrentarse al " +
                     "momento más terrible de sus vidas.",
-            catel = R.drawable.c6,
+            catel = 6,
             score = 82,
             genre = listOf("Ciencia ficción", "Aventura"),
             category = "Pelicula"
@@ -285,7 +305,7 @@ fun getListOfMedia(): List<MediaModel> {
                     "ultrasecreta para vigilar los movimientos de Donovan Desmond, quien dirige " +
                     "el Partido Nacional por la Unidad de Ostania, responsable de bombardear los " +
                     "esfuerzos de paz entre ambos países.",
-            catel = R.drawable.c7,
+            catel = 7,
             score = 87,
             genre = listOf("Animación", "Aventura", "Acción", "Comedia"),
             category = "Anime"
@@ -298,7 +318,7 @@ fun getListOfMedia(): List<MediaModel> {
                     "equilibrio cambiará el futuro y decidirá, de una vez por todas, si los seres " +
                     "humanos seguirán en la cúspide de los depredadores en un planeta que comparten " +
                     "con los animales más temibles de la creación.",
-            catel = R.drawable.c8,
+            catel = 8,
             score = 70,
             genre = listOf("Ciencia ficción", "Aventura", "Acción"),
             category = "Pelicula"
@@ -309,7 +329,7 @@ fun getListOfMedia(): List<MediaModel> {
             description = "El largo y tortuoso viaje de los hermanos Elric llega a su épico " +
                     "final, en el que deben enfrentar una amenaza de otro mundo que afecta a " +
                     "todo el país.",
-            catel = R.drawable.c9,
+            catel = 9,
             score = 63,
             genre = listOf("Fantasía", "Aventura", "Acción"),
             category = "Pelicula"
@@ -324,7 +344,7 @@ fun getListOfMedia(): List<MediaModel> {
                     "tierra. Cuando se encuentra entrenando a un destacamento de graduados de Top " +
                     "Gun para una misión especializada, Maverick se encuentra allí con el teniente " +
                     "Bradley Bradshaw, el hijo de su difunto amigo \"Goose\".",
-            catel = R.drawable.c10,
+            catel = 10,
             score = 83,
             genre = listOf("Drama", "Acción"),
             category = "Pelicula"
