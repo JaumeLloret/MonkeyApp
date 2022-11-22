@@ -10,6 +10,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.jle.monkeyfilmapp.login.ui.LoginScreen
+import es.iesperemaria.monkeyapp.login.ui.LoginViewModel
 import es.iesperemaria.monkeyapp.ui.composable.MediaGridView
 import es.iesperemaria.monkeyapp.ui.composable.MediaListView
 import es.iesperemaria.monkeyapp.ui.composable.MediaListViewWithCustomControl
@@ -25,7 +27,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    MediaListViewWithCustomControl()
+                    LoginScreen(LoginViewModel())
                 }
             }
         }
