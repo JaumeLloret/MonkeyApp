@@ -1,4 +1,4 @@
-package com.jle.monkeyfilmapp.home.domain
+package com.jle.monkeyfilmapp.home.data
 
 import androidx.annotation.DrawableRes
 

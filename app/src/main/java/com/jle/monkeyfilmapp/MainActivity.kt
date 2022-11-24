@@ -15,6 +15,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.jle.monkeyfilmapp.home.ui.composables.MediaListView
+import com.jle.monkeyfilmapp.login.ui.LoginScreen
+import com.jle.monkeyfilmapp.login.ui.LoginViewModel
 import com.jle.monkeyfilmapp.model.Routes
 import com.jle.monkeyfilmapp.ui.theme.MonkeyFilmAppTheme
 
@@ -27,43 +29,10 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background
                 ) {
-                    /*val navigationController = rememberNavController()
-                    NavHost(
-                        navController = navigationController,
-                        startDestination = Routes.ScreenOne.route
-                    ) {
-                        composable(route = Routes.ScreenOne.route) { ScreenOne(navigationController) }
-                        composable(route = Routes.ScreenTwo.route) { ScreenTwo(navigationController) }
-                        composable(route = Routes.ScreenThree.route) {
-                            ScreenThree(
-                                navigationController
-                            )
-                        }
-                        composable(
-                            route = Routes.ScreenFour.route,
-                            arguments = listOf(navArgument("score") {
-                                type = NavType.IntType
-                            })
-                        ) { navBackStackEntry ->
-                            ScreenFour(
-                                navigationController,
-                                navBackStackEntry.arguments?.getInt("score") ?: 0
-                            )
-                        }
-                        composable(
-                            route = Routes.ScreenFive.route,
-                            arguments = listOf(navArgument("title") {
-                                defaultValue = "Hola Mundo"
-                            })
-                        ) { navBackStackEntry ->
-                            ScreenFive(
-                                navigationController,
-                                navBackStackEntry.arguments?.getString("title")
-                            )
-                        }
-                    }*/
+                    LoginScreen(LoginViewModel())
 
-                    MediaListView()
+
+                    //MediaListView()
                 }
             }
         }

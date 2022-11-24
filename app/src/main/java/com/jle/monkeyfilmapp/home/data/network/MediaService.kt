@@ -1,7 +1,6 @@
 package com.jle.monkeyfilmapp.home.data.network
 
 import com.jle.monkeyfilmapp.core.network.RetrofitHelper
-import com.jle.monkeyfilmapp.home.domain.MediaModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

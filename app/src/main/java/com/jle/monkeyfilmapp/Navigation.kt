@@ -10,7 +10,52 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.jle.monkeyfilmapp.model.Routes
+
+
+@Composable
+fun Nav() {
+    val navigationController = rememberNavController()
+    NavHost(
+        navController = navigationController,
+        startDestination = Routes.ScreenOne.route
+    ) {
+        composable(route = Routes.ScreenOne.route) { ScreenOne(navigationController) }
+        composable(route = Routes.ScreenTwo.route) { ScreenTwo(navigationController) }
+        composable(route = Routes.ScreenThree.route) {
+            ScreenThree(
+                navigationController
+            )
+        }
+        composable(
+            route = Routes.ScreenFour.route,
+            arguments = listOf(navArgument("score") {
+                type = NavType.IntType
+            })
+        ) { navBackStackEntry ->
+            ScreenFour(
+                navigationController,
+                navBackStackEntry.arguments?.getInt("score") ?: 0
+            )
+        }
+        composable(
+            route = Routes.ScreenFive.route,
+            arguments = listOf(navArgument("title") {
+                defaultValue = "Hola Mundo"
+            })
+        ) { navBackStackEntry ->
+            ScreenFive(
+                navigationController,
+                navBackStackEntry.arguments?.getString("title")
+            )
+        }
+    }
+}
 
 @Composable
 fun ScreenOne(navigationController: NavHostController) {
