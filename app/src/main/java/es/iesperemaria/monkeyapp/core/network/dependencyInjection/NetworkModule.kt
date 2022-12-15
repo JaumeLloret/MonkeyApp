@@ -16,7 +16,7 @@ class NetworkModule {
     @Singleton
     @Provides
     fun provideRetrofit(): Retrofit {
-        return Retrofit.Builder().baseUrl("https://run.mocky.io/")
+        return Retrofit.Builder().baseUrl("https://monkeyapp-dam-jle-default-rtdb.europe-west1.firebasedatabase.app/")
             .addConverterFactory(GsonConverterFactory.create()).build()
     }
 

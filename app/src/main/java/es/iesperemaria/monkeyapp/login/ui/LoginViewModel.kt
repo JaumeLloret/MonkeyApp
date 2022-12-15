@@ -35,7 +35,7 @@ class LoginViewModel @Inject constructor(
     }
 
     private fun enableLogin(email: String, password: String): Boolean =
-        Patterns.EMAIL_ADDRESS.matcher(email).matches()
+        Patterns.PHONE.matcher(email).matches()
                 && password.length > 5
 
     fun onButtonLoginPress() {

@@ -2,6 +2,7 @@
     <string name="app_name">MonkeyApp</string>
     <string name="app_title">MonkeyFilm App</string>
     <string name="email">Correo</string>
+    <string name="phone">Telefono</string>
     <string name="password">Contraseña</string>
     <string name="forgot_password">¿No recuerdas la contraseña?</string>
     <string name="sign_up_question">¿No tienes aún cuenta?</string>

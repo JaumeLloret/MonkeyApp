@@ -1,5 +1,6 @@
 package es.iesperemaria.monkeyapp.login.data.network
 
+import android.util.Log
 import es.iesperemaria.monkeyapp.core.network.RetrofitHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -10,8 +11,9 @@ class LoginService @Inject constructor(private val loginClient: LoginClient) {
 
     suspend fun doLogin(user: String, password: String) : Boolean {
         return withContext(Dispatchers.IO) {
-            val response = loginClient.doLogin()
-            response.body()?.loginOk ?: false
+            val response = loginClient.doLogin(user)
+            Log.i("DAM", "data: ${response.body()}")
+            response.body()?.password!!.compareTo(password) == 0
         }
     }
 }
