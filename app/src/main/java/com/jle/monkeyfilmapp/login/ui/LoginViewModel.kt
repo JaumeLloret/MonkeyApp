@@ -32,13 +32,14 @@ class LoginViewModel @Inject constructor(private val loginUseCase:LoginUseCase) 
         _isLoginEnable.value = enableLogin(email, password)
     }
 
-    fun enableLogin(email: String, password: String) =
-        Patterns.EMAIL_ADDRESS.matcher(email).matches() && password.length > 6
+    private fun enableLogin(email: String, password: String) =
+        Patterns.PHONE.matcher(email).matches() && password.length > 6
 
     fun onLoginClick() {
         viewModelScope.launch {
             _isLoading.value = true
             val result = loginUseCase(email.value!!, password.value!!)
+            Log.i("DAM", "Se ha completado el envio de datos y es: $result")
             if(result) {
                 Log.i("DAM", "Se ha completado el envio de datos")
             }

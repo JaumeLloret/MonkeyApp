@@ -96,7 +96,7 @@ fun Body(modifier: Modifier, loginViewModel: LoginViewModel) {
         )
         ImageLogo(Modifier.align(Alignment.CenterHorizontally))
         Spacer(modifier = Modifier.size(16.dp))
-        Email(email) {
+        Phone(email) {
             loginViewModel.onLoginChanged(email = it, password = password)
         }
         Spacer(modifier = Modifier.size(4.dp))
@@ -193,6 +193,26 @@ fun Email(email: String, onTextChanged: (String) -> Unit) {
         )
     )
 }
+
+@Composable
+fun Phone(phone: String, onTextChanged: (String) -> Unit) {
+    TextField(
+        value = phone,
+        onValueChange = { onTextChanged(it) },
+        modifier = Modifier.fillMaxWidth(),
+        placeholder = { Text(text = stringResource(id = R.string.phone)) },
+        maxLines = 1,
+        singleLine = true,
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
+        colors = TextFieldDefaults.textFieldColors(
+            textColor = Color(0xFFB2B2B2),
+            backgroundColor = Color(0xFFFAFAFA),
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent
+        )
+    )
+}
+
 
 @Composable
 fun ImageLogo(modifier: Modifier) {

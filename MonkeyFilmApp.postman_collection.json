@@ -1,0 +1,286 @@
+{
+	"info": {
+		"_postman_id": "204e782d-aaac-4b5b-884f-9958fbaf435e",
+		"name": "MonkeyFilmApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8329101"
+	},
+	"item": [
+		{
+			"name": "Media",
+			"item": [
+				{
+					"name": "GET Media",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://monkeyfilmapp-default-rtdb.europe-west1.firebasedatabase.app/media.json",
+							"protocol": "https",
+							"host": [
+								"monkeyfilmapp-default-rtdb",
+								"europe-west1",
+								"firebasedatabase",
+								"app"
+							],
+							"path": [
+								"media.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Media",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"category\": \"Pelicula\",\r\n      \"poster\": 18,\r\n      \"description\": \"Cuatro años después de la destrucción de Isla Nublar, los dinosaurios  conviven – y cazan – con los seres humanos en todo el mundo. Este frágil  equilibrio cambiará el futuro y decidirá, de una vez por todas, si los seres  humanos seguirán en la cúspide de los depredadores en un planeta que comparten  con los animales más temibles de la creación.\",\r\n      \"genre\": [\r\n        \"Ciencia ficción\",\r\n        \"Aventura\",\r\n        \"Acción\"\r\n      ],\r\n      \"id\": 8,\r\n      \"score\": 70,\r\n      \"title\": \"Jurassic World: Dominion\"\r\n    }"
+						},
+						"url": {
+							"raw": "https://monkeyfilmapp-default-rtdb.europe-west1.firebasedatabase.app/media/data/11.json",
+							"protocol": "https",
+							"host": [
+								"monkeyfilmapp-default-rtdb",
+								"europe-west1",
+								"firebasedatabase",
+								"app"
+							],
+							"path": [
+								"media",
+								"data",
+								"11.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Media",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"category\": \"Pelicula\",\r\n      \"poster\": 8,\r\n      \"description\": \"Cuatro años después de la destrucción de Isla Nublar, los dinosaurios  conviven – y cazan – con los seres humanos en todo el mundo. Este frágil  equilibrio cambiará el futuro y decidirá, de una vez por todas, si los seres  humanos seguirán en la cúspide de los depredadores en un planeta que comparten  con los animales más temibles de la creación.\",\r\n      \"genre\": [\r\n        \"Ciencia ficción\",\r\n        \"Aventura\",\r\n        \"Acción\"\r\n      ],\r\n      \"id\": 8,\r\n      \"score\": 70,\r\n      \"title\": \"Jurassic World: Dominion\"\r\n    }"
+						},
+						"url": {
+							"raw": "https://monkeyfilmapp-default-rtdb.europe-west1.firebasedatabase.app/media.json",
+							"protocol": "https",
+							"host": [
+								"monkeyfilmapp-default-rtdb",
+								"europe-west1",
+								"firebasedatabase",
+								"app"
+							],
+							"path": [
+								"media.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Media",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"category\": \"Pelicula\",\r\n      \"poster\": 18,\r\n      \"description\": \"Cuatro años después de la destrucción de Isla Nublar, los dinosaurios  conviven – y cazan – con los seres humanos en todo el mundo. Este frágil  equilibrio cambiará el futuro y decidirá, de una vez por todas, si los seres  humanos seguirán en la cúspide de los depredadores en un planeta que comparten  con los animales más temibles de la creación.\",\r\n      \"genre\": [\r\n        \"Ciencia ficción\",\r\n        \"Aventura\",\r\n        \"Acción\"\r\n      ],\r\n      \"id\": 8,\r\n      \"score\": 70,\r\n      \"title\": \"Jurassic World: Dominion\"\r\n    }"
+						},
+						"url": {
+							"raw": "https://monkeyfilmapp-default-rtdb.europe-west1.firebasedatabase.app/media/data/11.json",
+							"protocol": "https",
+							"host": [
+								"monkeyfilmapp-default-rtdb",
+								"europe-west1",
+								"firebasedatabase",
+								"app"
+							],
+							"path": [
+								"media",
+								"data",
+								"11.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Media",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://monkeyfilmapp-default-rtdb.europe-west1.firebasedatabase.app/media/data/11.json",
+							"protocol": "https",
+							"host": [
+								"monkeyfilmapp-default-rtdb",
+								"europe-west1",
+								"firebasedatabase",
+								"app"
+							],
+							"path": [
+								"media",
+								"data",
+								"11.json"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "GET {phone}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://monkeyfilmapp-default-rtdb.europe-west1.firebasedatabase.app/user/617837320.json",
+							"protocol": "https",
+							"host": [
+								"monkeyfilmapp-default-rtdb",
+								"europe-west1",
+								"firebasedatabase",
+								"app"
+							],
+							"path": [
+								"user",
+								"617837320.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://monkeyfilmapp-default-rtdb.europe-west1.firebasedatabase.app/user.json",
+							"protocol": "https",
+							"host": [
+								"monkeyfilmapp-default-rtdb",
+								"europe-west1",
+								"firebasedatabase",
+								"app"
+							],
+							"path": [
+								"user.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Jaume\",\r\n    \"surname\": \"Lloret Enríquez\",\r\n    \"birthdate\": \"13/04/1988\",\r\n    \"genre\": \"male\",\r\n    \"preferences\": [\"fantasy\", \"history\", \"anime\", \"sport\"],\r\n    \"email\": \"j.lloretenriquez@edu.gva.es\",\r\n    \"password\": \"DAMMonkeyApp\"\r\n}"
+						},
+						"url": {
+							"raw": "https://monkeyfilmapp-default-rtdb.europe-west1.firebasedatabase.app/user/617837320.json",
+							"protocol": "https",
+							"host": [
+								"monkeyfilmapp-default-rtdb",
+								"europe-west1",
+								"firebasedatabase",
+								"app"
+							],
+							"path": [
+								"user",
+								"617837320.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"619837320\": {\r\n        \"data\":{\r\n            \"name\": \"Jaume\",\r\n            \"surname\": \"Lloret Enríquez\",\r\n            \"birthdate\": \"13/04/1988\",\r\n            \"genre\": \"male\",\r\n            \"preferences\": [\"fantasy\", \"history\", \"anime\", \"sport\"],\r\n            \"email\": \"j.lloretenriquez@edu.gva.es\",\r\n            \"password\": \"DAMMonkeyApp\"\r\n        }\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "https://monkeyfilmapp-default-rtdb.europe-west1.firebasedatabase.app/user/.json",
+							"protocol": "https",
+							"host": [
+								"monkeyfilmapp-default-rtdb",
+								"europe-west1",
+								"firebasedatabase",
+								"app"
+							],
+							"path": [
+								"user",
+								".json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Jaume\",\r\n    \"surname\": \"Lloret Enríquez\",\r\n    \"birthdate\": \"13/04/1988\",\r\n    \"genre\": \"male\",\r\n    \"preferences\": [\"fantasy\", \"history\", \"anime\", \"sport\"],\r\n    \"email\": \"j.lloretenriquez@edu.gva.es\",\r\n    \"password\": \"DAMMonkeyApp\"\r\n}"
+						},
+						"url": {
+							"raw": "https://monkeyfilmapp-default-rtdb.europe-west1.firebasedatabase.app/user/617837320.json",
+							"protocol": "https",
+							"host": [
+								"monkeyfilmapp-default-rtdb",
+								"europe-west1",
+								"firebasedatabase",
+								"app"
+							],
+							"path": [
+								"user",
+								"617837320.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://monkeyfilmapp-default-rtdb.europe-west1.firebasedatabase.app/user/615253638.json",
+							"protocol": "https",
+							"host": [
+								"monkeyfilmapp-default-rtdb",
+								"europe-west1",
+								"firebasedatabase",
+								"app"
+							],
+							"path": [
+								"user",
+								"615253638.json"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

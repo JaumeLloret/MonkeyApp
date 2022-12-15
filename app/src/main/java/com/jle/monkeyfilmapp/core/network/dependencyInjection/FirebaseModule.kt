@@ -1,6 +1,6 @@
 package com.jle.monkeyfilmapp.core.network.dependencyInjection
 
-/*import com.jle.monkeyfilmapp.login.data.network.LoginClient
+import com.jle.monkeyfilmapp.login.data.network.LoginClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,18 +11,17 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class NetworkModule {
-
+class FirebaseModule {
     @Singleton
     @Provides
-    fun provideMockyIO(): Retrofit {
-        return Retrofit.Builder().baseUrl("https://run.mocky.io/")
+    fun provideRealTimeDatabaseFirebase(): Retrofit {
+        return Retrofit.Builder().baseUrl("https://monkeyfilmapp-default-rtdb.europe-west1.firebasedatabase.app/")
             .addConverterFactory(GsonConverterFactory.create()).build()
     }
 
     @Singleton
     @Provides
-    fun provideMockyIOLoginClient(retrofit: Retrofit): LoginClient {
+    fun provideRealTimeDatabaseFirebaseLoginClient(retrofit: Retrofit):LoginClient {
         return retrofit.create(LoginClient::class.java)
     }
-}*/
+}
