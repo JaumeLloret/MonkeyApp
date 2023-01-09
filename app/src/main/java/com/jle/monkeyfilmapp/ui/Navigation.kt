@@ -1,5 +1,6 @@
-package com.jle.monkeyfilmapp
+package com.jle.monkeyfilmapp.ui
 
+import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -15,24 +16,24 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.jle.monkeyfilmapp.model.Routes
+import com.jle.monkeyfilmapp.login.ui.LoginScreen
+import com.jle.monkeyfilmapp.login.ui.LoginViewModel
+import com.jle.monkeyfilmapp.register.ui.RegisterScreen
+import com.jle.monkeyfilmapp.register.ui.RegisterViewModel
+import com.jle.monkeyfilmapp.ui.model.Routes
 
 
 @Composable
-fun Nav() {
+fun Nav(loginViewModel : LoginViewModel, registerViewModel : RegisterViewModel) {
     val navigationController = rememberNavController()
     NavHost(
         navController = navigationController,
-        startDestination = Routes.ScreenOne.route
+        startDestination = Routes.LoginScreen.route
     ) {
-        composable(route = Routes.ScreenOne.route) { ScreenOne(navigationController) }
-        composable(route = Routes.ScreenTwo.route) { ScreenTwo(navigationController) }
-        composable(route = Routes.ScreenThree.route) {
-            ScreenThree(
-                navigationController
-            )
-        }
-        composable(
+        composable(route = Routes.LoginScreen.route) { LoginScreen(loginViewModel, navigationController) }
+        composable(route = Routes.RegisterScreen.route) { RegisterScreen(registerViewModel, navigationController) }
+
+        /*composable(
             route = Routes.ScreenFour.route,
             arguments = listOf(navArgument("score") {
                 type = NavType.IntType
@@ -53,40 +54,11 @@ fun Nav() {
                 navigationController,
                 navBackStackEntry.arguments?.getString("title")
             )
-        }
+        }*/
     }
 }
 
-@Composable
-fun ScreenOne(navigationController: NavHostController) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Blue)
-    ) {
-        Text(
-            text = "Pantalla 1",
-            modifier = Modifier
-                .align(Alignment.Center)
-                .clickable { navigationController.navigate(Routes.ScreenTwo.route) })
-    }
-}
-
-@Composable
-fun ScreenTwo(navigationController: NavHostController) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Red)
-    ) {
-        Text(
-            text = "Pantalla 2",
-            modifier = Modifier
-                .align(Alignment.Center)
-                .clickable { navigationController.navigate(Routes.ScreenThree.route) })
-    }
-}
-
+/*
 @Composable
 fun ScreenThree(navigationController: NavHostController) {
     Box(
@@ -127,3 +99,4 @@ fun ScreenFive(navigationController: NavHostController, title: String?) {
         Text(text = "Pantalla 5 -> $title", modifier = Modifier.align(Alignment.Center))
     }
 }
+*/

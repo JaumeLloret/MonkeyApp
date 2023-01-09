@@ -10,20 +10,19 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavType
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
 import com.jle.monkeyfilmapp.login.ui.LoginScreen
 import com.jle.monkeyfilmapp.login.ui.LoginViewModel
-import com.jle.monkeyfilmapp.model.Routes
+import com.jle.monkeyfilmapp.register.ui.RegisterScreen
+import com.jle.monkeyfilmapp.register.ui.RegisterViewModel
+import com.jle.monkeyfilmapp.ui.Nav
 import com.jle.monkeyfilmapp.ui.theme.MonkeyFilmAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val loginViewModel : LoginViewModel by viewModels()
+    private val registerViewModel : RegisterViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -32,9 +31,7 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background
                 ) {
-                    LoginScreen(loginViewModel)
-
-
+                    Nav(loginViewModel = loginViewModel, registerViewModel = registerViewModel)
                     //MediaListView()
                 }
             }
