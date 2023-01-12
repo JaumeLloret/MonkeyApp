@@ -1,4 +1,4 @@
-package es.iesperemaria.monkeyapp.model
+package es.iesperemaria.monkeyapp.ui.model
 
 import androidx.annotation.DrawableRes
 

@@ -1,4 +1,4 @@
-package es.iesperemaria.monkeyapp
+package es.iesperemaria.monkeyapp.ui
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
@@ -6,7 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import es.iesperemaria.monkeyapp.model.Routes
+import es.iesperemaria.monkeyapp.ui.model.Routes
 import es.iesperemaria.monkeyapp.ui.screens.*
 
 @Composable

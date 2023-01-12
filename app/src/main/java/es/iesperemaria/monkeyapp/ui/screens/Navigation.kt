@@ -10,7 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
-import es.iesperemaria.monkeyapp.model.Routes
+import es.iesperemaria.monkeyapp.ui.model.Routes
 
 @Composable
 fun ScreenOne(navigationController: NavHostController) {

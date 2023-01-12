@@ -23,7 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import es.iesperemaria.monkeyapp.R
-import es.iesperemaria.monkeyapp.model.MediaModel
+import es.iesperemaria.monkeyapp.ui.model.MediaModel
 import kotlinx.coroutines.launch
 
 @Composable

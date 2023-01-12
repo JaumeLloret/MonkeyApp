@@ -1,4 +1,4 @@
-package es.iesperemaria.monkeyapp.model
+package es.iesperemaria.monkeyapp.ui.model
 
 sealed class Routes(val route: String) {
     object  ScreenOne: Routes("screenOne")
