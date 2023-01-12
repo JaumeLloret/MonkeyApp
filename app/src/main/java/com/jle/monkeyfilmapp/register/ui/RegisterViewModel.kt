@@ -6,62 +6,114 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jle.monkeyfilmapp.register.domin.entities.UserModel
+import com.jle.monkeyfilmapp.register.domin.entities.UserModelFactory
 import com.jle.monkeyfilmapp.register.domin.usecases.RegisterUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RegisterViewModel @Inject constructor(private val registerUseCase: RegisterUseCase) :ViewModel() {
+class RegisterViewModel @Inject constructor(
+    private val registerUseCase: RegisterUseCase,
+    private val userModelFactory: UserModelFactory
+    ) :
+    ViewModel() {
 
     private val _phone = MutableLiveData<String>()
-    val phone : LiveData<String> = _phone
+    val phone: LiveData<String> = _phone
 
     private val _email = MutableLiveData<String>()
-    val email : LiveData<String> = _email
+    val email: LiveData<String> = _email
 
     private val _password = MutableLiveData<String>()
-    val password : LiveData<String> = _password
+    val password: LiveData<String> = _password
 
     private val _confirmPassword = MutableLiveData<String>()
-    val confirmPassword : LiveData<String> = _confirmPassword
+    val confirmPassword: LiveData<String> = _confirmPassword
 
     private val _name = MutableLiveData<String>()
-    val name : LiveData<String> = _name
+    val name: LiveData<String> = _name
 
     private val _surname = MutableLiveData<String>()
-    val surname : LiveData<String> = _surname
+    val surname: LiveData<String> = _surname
 
     private val _birthdate = MutableLiveData<String>()
-    val birthdate : LiveData<String> = _birthdate
+    val birthdate: LiveData<String> = _birthdate
 
     private val _genre = MutableLiveData<String>()
-    val genre : LiveData<String> = _genre
+    val genre: LiveData<String> = _genre
 
     private val _preferences = MutableLiveData<List<String>>()
-    val preferences : LiveData<List<String>> = _preferences
+    val preferences: LiveData<List<String>> = _preferences
 
     private val _isLoginEnable = MutableLiveData<Boolean>()
-    val isLoginEnable:LiveData<Boolean> = _isLoginEnable
+    val isLoginEnable: LiveData<Boolean> = _isLoginEnable
 
     private val _isLoading = MutableLiveData<Boolean>()
-    val isLoading:LiveData<Boolean> = _isLoading
+    val isLoading: LiveData<Boolean> = _isLoading
 
-    fun onLoginChanged(email:String, password:String){
+    fun onRegisterChanged(
+        name: String,
+        surname: String,
+        phone: String,
+        genre: String,
+        email: String,
+        birthdate: String,
+        password: String,
+        confirmPassword: String
+    ) {
+        _name.value = name
+        _surname.value = surname
+        _phone.value = phone
+        _genre.value = genre
+        _birthdate.value = birthdate
         _email.value = email
+        _confirmPassword.value = confirmPassword
         _password.value = password
-        _isLoginEnable.value = enableLogin(email, password)
+        _isLoginEnable.value = enableRegisterButton(
+            name,
+            surname,
+            phone,
+            genre,
+            email,
+            birthdate,
+            password,
+            confirmPassword
+        )
     }
 
-    private fun enableLogin(email: String, password: String) =
-        Patterns.PHONE.matcher(email).matches() && password.length > 6
+    private fun enableRegisterButton(
+        name: String,
+        surname: String,
+        phone: String,
+        genre: String,
+        email: String,
+        birthdate: String,
+        password: String,
+        confirmPassword: String
+    ) = Patterns.PHONE.matcher(phone).matches()
+            && Patterns.EMAIL_ADDRESS.matcher(email).matches()
+            && password.length > 6 && password.compareTo(confirmPassword) == 0
+            && birthdate.isNotEmpty() && name.isNotEmpty()
+            && surname.isNotEmpty() && genre.isNotEmpty()
 
-    fun onLoginClick() {
+    fun onRegisterClick() {
         viewModelScope.launch {
             _isLoading.value = true
-            val result = registerUseCase(email.value!!, password.value!!)
+            val result = registerUseCase(
+                userModelFactory(
+                    name = name.value!!,
+                    surname = surname.value!!,
+                    phone = phone.value!!,
+                    genre = genre.value!!,
+                    email = email.value!!,
+                    birthdate = birthdate.value!!,
+                    password = password.value!!,
+                )
+            )
             Log.i("DAM", "Se ha completado el envio de datos y es: $result")
-            if(result) {
+            if (result) {
                 Log.i("DAM", "Se ha completado el envio de datos")
             }
             _isLoading.value = false

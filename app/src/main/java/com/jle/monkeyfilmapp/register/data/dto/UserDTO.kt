@@ -1,10 +1,11 @@
 package com.jle.monkeyfilmapp.register.data.dto
 
-data class UserDTO(
-    val name: String,
-    val surname: String,
-    val birthdate: String,
-    val genre: String,
-    val preferences: List<String>,
-    val email: String,
-    val password: String)
+import com.google.gson.annotations.SerializedName
+
+data class UserDTO(@SerializedName("name") val name: String,
+                   @SerializedName("surname") val surname: String,
+                   @SerializedName("birthdate") val birthdate: String,
+                   @SerializedName("genre") val genre: String,
+                   //@SerializedName("preferences") val preferences: List<String>,
+                   @SerializedName("email") val email: String,
+                   @SerializedName("password") val password: String)

@@ -1,7 +1,6 @@
 package com.jle.monkeyfilmapp.register.ui
 
 import androidx.compose.foundation.*
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -23,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.jle.monkeyfilmapp.R
+import com.jle.monkeyfilmapp.ui.theme.*
 
 @Composable
 fun RegisterScreen(viewModel: RegisterViewModel, navigationController: NavHostController) {
@@ -33,23 +33,26 @@ fun RegisterScreen(viewModel: RegisterViewModel, navigationController: NavHostCo
     ) {
         val isLoading: Boolean by viewModel.isLoading.observeAsState(initial = false)
 
-        if(isLoading) {
-            Box(modifier = Modifier
-                .fillMaxSize()
-                .align(Alignment.Center)) {
+        if (isLoading) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .align(Alignment.Center)
+            ) {
                 CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
             }
-        }
-        else {
+        } else {
             Column(
                 Modifier
                     .fillMaxSize()
                     .align(Alignment.Center)
-                    .padding(horizontal = 5.dp)) {
+                    .padding(horizontal = 5.dp)
+            ) {
                 Header(
                     Modifier
                         .align(Alignment.CenterHorizontally)
-                        .weight(0.3f))
+                        .weight(0.3f)
+                )
                 Body(Modifier.weight(0.6f), viewModel)
                 Footer(Modifier.weight(0.1f), navigationController)
             }
@@ -62,7 +65,7 @@ fun Footer(modifier: Modifier, navigationController: NavHostController) {
     Column(modifier = modifier.fillMaxWidth()) {
         Divider(
             Modifier
-                .background(Color(0xFFF9F9F9))
+                .background(SecondaryWhite)
                 .height(1.dp)
                 .fillMaxWidth()
         )
@@ -76,14 +79,18 @@ fun Footer(modifier: Modifier, navigationController: NavHostController) {
 fun SignIn(navigationController: NavHostController) {
     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
         Text(
-            text = stringResource(id = R.string.sign_in_question), fontSize = 12.sp, color = Color(0xFFB5B5B5)
+            text = stringResource(id = R.string.sign_in_question),
+            fontSize = 12.sp,
+            color = SecondaryGrey
         )
         Text(
             text = stringResource(id = R.string.sign_in),
-            Modifier.padding(horizontal = 8.dp).clickable { navigationController.popBackStack() },
+            Modifier
+                .padding(horizontal = 8.dp)
+                .clickable { navigationController.popBackStack() },
             fontSize = 12.sp,
             fontWeight = FontWeight.Bold,
-            color = Color(0xFF47978E9),
+            color = PrimaryPurple,
         )
     }
 }
@@ -106,7 +113,16 @@ fun Body(modifier: Modifier, viewModel: RegisterViewModel) {
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
             placeholder = { Text(text = stringResource(id = R.string.name)) }
         ) {
-            viewModel.onLoginChanged(email = it, password = password)
+            viewModel.onRegisterChanged(
+                name = it,
+                surname = surname,
+                phone = phone,
+                genre = genre,
+                email = email,
+                birthdate = birthdate,
+                password = password,
+                confirmPassword = confirmPassword
+            )
         }
         Spacer(modifier = Modifier.size(4.dp))
         InputText(
@@ -114,7 +130,16 @@ fun Body(modifier: Modifier, viewModel: RegisterViewModel) {
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
             placeholder = { Text(text = stringResource(id = R.string.surname)) }
         ) {
-            viewModel.onLoginChanged(email = it, password = password)
+            viewModel.onRegisterChanged(
+                name = name,
+                surname = it,
+                phone = phone,
+                genre = genre,
+                email = email,
+                birthdate = birthdate,
+                password = password,
+                confirmPassword = confirmPassword
+            )
         }
         Spacer(modifier = Modifier.size(4.dp))
         InputText(
@@ -122,7 +147,16 @@ fun Body(modifier: Modifier, viewModel: RegisterViewModel) {
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             placeholder = { Text(text = stringResource(id = R.string.email)) }
         ) {
-            viewModel.onLoginChanged(email = it, password = password)
+            viewModel.onRegisterChanged(
+                name = name,
+                surname = surname,
+                phone = phone,
+                genre = genre,
+                email = it,
+                birthdate = birthdate,
+                password = password,
+                confirmPassword = confirmPassword
+            )
         }
         Spacer(modifier = Modifier.size(4.dp))
         InputText(
@@ -130,7 +164,16 @@ fun Body(modifier: Modifier, viewModel: RegisterViewModel) {
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
             placeholder = { Text(text = stringResource(id = R.string.phone)) }
         ) {
-            viewModel.onLoginChanged(email = it, password = password)
+            viewModel.onRegisterChanged(
+                name = name,
+                surname = surname,
+                phone = it,
+                genre = genre,
+                email = email,
+                birthdate = birthdate,
+                password = password,
+                confirmPassword = confirmPassword
+            )
         }
         Spacer(modifier = Modifier.size(4.dp))
         InputText(
@@ -138,7 +181,16 @@ fun Body(modifier: Modifier, viewModel: RegisterViewModel) {
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
             placeholder = { Text(text = stringResource(id = R.string.birthdate)) }
         ) {
-            viewModel.onLoginChanged(email = it, password = password)
+            viewModel.onRegisterChanged(
+                name = name,
+                surname = surname,
+                phone = phone,
+                genre = genre,
+                email = email,
+                birthdate = it,
+                password = password,
+                confirmPassword = confirmPassword
+            )
         }
         Spacer(modifier = Modifier.size(4.dp))
         InputText(
@@ -146,37 +198,63 @@ fun Body(modifier: Modifier, viewModel: RegisterViewModel) {
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
             placeholder = { Text(text = stringResource(id = R.string.genre)) }
         ) {
-            viewModel.onLoginChanged(email = it, password = password)
+            viewModel.onRegisterChanged(
+                name = name,
+                surname = surname,
+                phone = phone,
+                genre = it,
+                email = email,
+                birthdate = birthdate,
+                password = password,
+                confirmPassword = confirmPassword
+            )
         }
         Spacer(modifier = Modifier.size(4.dp))
         Password(
             value = password,
             placeholder = { Text(stringResource(id = R.string.password)) }
         ) {
-            viewModel.onLoginChanged(email = email, password = it)
+            viewModel.onRegisterChanged(
+                name = name,
+                surname = surname,
+                phone = phone,
+                genre = genre,
+                email = email,
+                birthdate = birthdate,
+                password = it,
+                confirmPassword = confirmPassword
+            )
         }
         Spacer(modifier = Modifier.size(4.dp))
         Password(
             value = confirmPassword,
             placeholder = { Text(stringResource(id = R.string.confirm_password)) }
         ) {
-            viewModel.onLoginChanged(email = email, password = it)
+            viewModel.onRegisterChanged(
+                name = name,
+                surname = surname,
+                phone = phone,
+                genre = genre,
+                email = email,
+                birthdate = birthdate,
+                password = password,
+                confirmPassword = it
+            )
         }
         Spacer(modifier = Modifier.size(16.dp))
-        registerButton(isLoginEnable, viewModel)
+        RegisterButton(isLoginEnable, viewModel)
     }
 }
 
-
 @Composable
-fun registerButton(loginEnable: Boolean, loginViewModel: RegisterViewModel) {
+fun RegisterButton(loginEnable: Boolean, loginViewModel: RegisterViewModel) {
     Button(
-        onClick = { loginViewModel.onLoginClick() },
+        onClick = { loginViewModel.onRegisterClick() },
         enabled = loginEnable,
         modifier = Modifier.fillMaxWidth(),
         colors = ButtonDefaults.buttonColors(
-            backgroundColor = Color(0xFF47978E9),
-            disabledBackgroundColor = Color(0xFF78C48F9),
+            backgroundColor = PrimaryPurple,
+            disabledBackgroundColor = SecondaryPurple,
             contentColor = Color.White,
             disabledContentColor = Color.White
         )
@@ -190,7 +268,8 @@ fun registerButton(loginEnable: Boolean, loginViewModel: RegisterViewModel) {
 fun Password(
     value: String,
     placeholder: @Composable (() -> Unit)?,
-    onTextChanged: (String) -> Unit) {
+    onTextChanged: (String) -> Unit
+) {
     var passwordVisibility by remember { mutableStateOf(false) }
     TextField(
         value = value,
@@ -198,8 +277,8 @@ fun Password(
         modifier = Modifier.fillMaxWidth(),
         placeholder = placeholder,
         colors = TextFieldDefaults.textFieldColors(
-            textColor = Color(0xFFB2B2B2),
-            backgroundColor = Color(0xFFFAFAFA),
+            textColor = PrimaryGrey,
+            backgroundColor = PrimaryWhite,
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent
         ),
@@ -207,13 +286,16 @@ fun Password(
         maxLines = 1,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
         trailingIcon = {
-            val imagen = if (passwordVisibility) {
+            val image = if (passwordVisibility) {
                 Icons.Filled.VisibilityOff
             } else {
                 Icons.Filled.Visibility
             }
             IconButton(onClick = { passwordVisibility = !passwordVisibility }) {
-                Icon(imageVector = imagen, contentDescription = stringResource(id = R.string.show_password))
+                Icon(
+                    imageVector = image,
+                    contentDescription = stringResource(id = R.string.show_password)
+                )
             }
         },
         visualTransformation = if (passwordVisibility) {
@@ -240,8 +322,8 @@ fun InputText(
         singleLine = true,
         keyboardOptions = keyboardOptions,
         colors = TextFieldDefaults.textFieldColors(
-            textColor = Color(0xFFB2B2B2),
-            backgroundColor = Color(0xFFFAFAFA),
+            textColor = PrimaryGrey,
+            backgroundColor = PrimaryWhite,
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent
         )

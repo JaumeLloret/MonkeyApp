@@ -1,17 +1,25 @@
-package com.jle.monkeyfilmapp.login.data.network
+package com.jle.monkeyfilmapp.register.data.network
 
 import android.util.Log
+import com.jle.monkeyfilmapp.register.data.dto.UserDTO
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import retrofit2.http.Body
 import javax.inject.Inject
 
-class RegisterService @Inject constructor(private val loginClient: LoginClient) {
+class RegisterService @Inject constructor(private val registerClient: RegisterClient) {
 
-    suspend fun doLogin(phone: String, password:String) : Boolean {
+    suspend fun signUp(
+        phone: String,
+        user: UserDTO
+    ): Boolean {
         return withContext(Dispatchers.IO) {
-            val response = loginClient.doLogin(phone)
+            val response = registerClient.signUp(
+                phone = phone,
+                user = user
+                )
             Log.i("DAM", "data: ${response.body()}")
-            response.body()?.password!!.compareTo(password) == 0
+            response.body()?.password!!.compareTo(user.password) == 0
         }
     }
 }

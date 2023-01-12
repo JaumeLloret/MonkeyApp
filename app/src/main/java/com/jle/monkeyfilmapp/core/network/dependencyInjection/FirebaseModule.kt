@@ -1,6 +1,7 @@
 package com.jle.monkeyfilmapp.core.network.dependencyInjection
 
 import com.jle.monkeyfilmapp.login.data.network.LoginClient
+import com.jle.monkeyfilmapp.register.data.network.RegisterClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -42,7 +43,13 @@ class FirebaseModule {
 
     @Singleton
     @Provides
-    fun provideRealTimeDatabaseFirebaseLoginClient(retrofit: Retrofit):LoginClient {
+    fun provideRealTimeDatabaseFirebaseLoginClient(retrofit: Retrofit) : LoginClient {
         return retrofit.create(LoginClient::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideRealTimeDatabaseFirebaseRegisterClient(retrofit: Retrofit) : RegisterClient {
+        return retrofit.create(RegisterClient::class.java)
     }
 }
