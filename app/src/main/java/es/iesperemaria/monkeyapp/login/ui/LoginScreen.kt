@@ -25,11 +25,13 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import es.iesperemaria.monkeyapp.R
 import es.iesperemaria.monkeyapp.login.ui.LoginViewModel
+import es.iesperemaria.monkeyapp.ui.model.Routes
 
 @Composable
-fun LoginScreen(loginViewModel: LoginViewModel) {
+fun LoginScreen(loginViewModel: LoginViewModel, navigationController: NavHostController) {
     Box(
         Modifier
             .fillMaxSize()
@@ -49,13 +51,13 @@ fun LoginScreen(loginViewModel: LoginViewModel) {
         } else {
             Header(Modifier.align(Alignment.TopEnd))
             Body(Modifier.align(Alignment.Center), loginViewModel)
-            Footer(Modifier.align(Alignment.BottomCenter))
+            Footer(Modifier.align(Alignment.BottomCenter), navigationController)
         }
     }
 }
 
 @Composable
-fun Footer(modifier: Modifier) {
+fun Footer(modifier: Modifier, navigationController: NavHostController) {
     Column(modifier = modifier.fillMaxWidth()) {
         Divider(
             Modifier
@@ -65,7 +67,9 @@ fun Footer(modifier: Modifier) {
         )
         Spacer(modifier = Modifier.size(24.dp))
         SignUp()
-        Spacer(modifier = Modifier.size(24.dp))
+        Spacer(modifier = Modifier.size(14.dp))
+        GoToMap(navigationController)
+        Spacer(modifier = Modifier.size(10.dp))
     }
 }
 
@@ -80,6 +84,21 @@ fun SignUp() {
         Text(
             text = stringResource(id = R.string.sign_up),
             Modifier.padding(horizontal = 8.dp),
+            fontSize = 12.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color(0xFF47978E9),
+        )
+    }
+}
+
+@Composable
+fun GoToMap(navigationController: NavHostController) {
+    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+        Text(
+            text = "Ver Mapa",
+            Modifier.padding(horizontal = 8.dp).clickable {
+                navigationController.navigate(Routes.MapScreen.route)
+            },
             fontSize = 12.sp,
             fontWeight = FontWeight.Bold,
             color = Color(0xFF47978E9),
