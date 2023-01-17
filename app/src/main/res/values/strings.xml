@@ -20,5 +20,6 @@
     <string name="register">Validar</string>
     <string name="logo">Logo</string>
     <string name="close_app">Cerrar la APP</string>
-    <string name="show_password">Mostrar la contraseña</string>
+    <string name="show_password">Mostrar la contraseña</string>to_map_view
+    <string name="to_map_view">Ir a la vista del map</string>
 </resources>

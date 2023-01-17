@@ -64,7 +64,9 @@ fun Footer(modifier: Modifier, navigationController: NavHostController) {
         )
         Spacer(modifier = Modifier.size(24.dp))
         SignUp(navigationController)
-        Spacer(modifier = Modifier.size(24.dp))
+        Spacer(modifier = Modifier.size(12.dp))
+        ToMapView(navigationController)
+        Spacer(modifier = Modifier.size(10.dp))
     }
 }
 
@@ -78,6 +80,19 @@ fun SignUp(navigationController: NavHostController) {
             text = stringResource(id = R.string.sign_up),
             Modifier.padding(horizontal = 8.dp).clickable { navigationController.navigate(Routes.RegisterScreen.route) },
             fontSize = 12.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color(0xFF47978E9),
+        )
+    }
+}
+
+@Composable
+fun ToMapView(navigationController: NavHostController) {
+    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+        Text(
+            text = stringResource(id = R.string.to_map_view),
+            Modifier.padding(horizontal = 8.dp).clickable { navigationController.navigate(Routes.MapScreen.route) },
+            fontSize = 14.sp,
             fontWeight = FontWeight.Bold,
             color = Color(0xFF47978E9),
         )
