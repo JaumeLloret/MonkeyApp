@@ -1,12 +1,22 @@
 <resources>
     <string name="app_name">MonkeyApp</string>
     <string name="app_title">MonkeyFilm App</string>
+    <string name="register_title">Registrate</string>
+    <string name="name">Nombre</string>
+    <string name="surname">Apellidos</string>
+    <string name="birthdate">Fecha de nacimiento</string>
+    <string name="genre">Genero</string>
     <string name="email">Correo</string>
     <string name="phone">Telefono</string>
+    <string name="preferences">Intereses</string>
     <string name="password">Contraseña</string>
+    <string name="sign_in_question">¿Ya tienes cuenta?</string>
+    <string name="confirm_password">Repetir contraseña</string>
     <string name="forgot_password">¿No recuerdas la contraseña?</string>
     <string name="sign_up_question">¿No tienes aún cuenta?</string>
     <string name="sign_up">Regístrate.</string>
+    <string name="sign_in">Inicia sesión</string>
+    <string name="register">Validar</string>
     <string name="log_in">Entrar</string>
     <string name="logo">Logo</string>
     <string name="close_app">Cerrar la APP</string>
