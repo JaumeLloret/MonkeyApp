@@ -6,13 +6,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jle.monkeyfilmapp.login.domin.LoginUseCase
+import com.jle.monkeyfilmapp.login.domin.usecases.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val loginUseCase:LoginUseCase) :ViewModel() {
+class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase) :ViewModel() {
 
     private val _email = MutableLiveData<String>()
     val email : LiveData<String> = _email
