@@ -1,4 +1,4 @@
-package com.jle.monkeyfilmapp.core.network.dependencyInjection
+package com.jle.monkeyfilmapp.dependencyinjection
 
 import com.jle.monkeyfilmapp.login.data.network.LoginClient
 import com.jle.monkeyfilmapp.register.data.network.RegisterClient
@@ -6,8 +6,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
+import okhttp3.*
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -52,4 +51,12 @@ class FirebaseModule {
     fun provideRealTimeDatabaseFirebaseRegisterClient(retrofit: Retrofit) : RegisterClient {
         return retrofit.create(RegisterClient::class.java)
     }
+/*
+    @Singleton
+    @Provides
+    fun provideRequestBody(file: File) : RequestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file)
+
+    @Singleton
+    @Provides
+    fun provideMultipartBody(file: File, requestBody: RequestBody) : MultipartBody.Part = MultipartBody.Part.createFormData("picture", file.name, requestBody)*/
 }

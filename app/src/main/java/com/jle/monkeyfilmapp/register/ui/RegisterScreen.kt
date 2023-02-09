@@ -1,5 +1,10 @@
 package com.jle.monkeyfilmapp.register.ui
 
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
@@ -12,6 +17,8 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -106,8 +113,17 @@ fun Body(modifier: Modifier, viewModel: RegisterViewModel) {
     val password: String by viewModel.password.observeAsState(initial = "")
     val confirmPassword: String by viewModel.confirmPassword.observeAsState(initial = "")
     val isLoginEnable: Boolean by viewModel.isLoginEnable.observeAsState(initial = false)
+    val imageUri: Uri? by viewModel.imageUri.observeAsState()
+    val bitmap: Bitmap? by viewModel.bitmap.observeAsState()
 
     Column(modifier = modifier.verticalScroll(rememberScrollState())) {
+        PickImageFromGallery(
+            modifier = Modifier.fillMaxSize(),
+            imageUri = imageUri,
+            bitmap = bitmap,
+            onUriChanged =  { viewModel.changeImageUri(it) },
+            onBitmapChanged = { viewModel.changeBitmap(it) }
+        )
         InputText(
             value = name,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
@@ -356,4 +372,49 @@ fun Header(modifier: Modifier) {
         )
         Spacer(modifier = Modifier.size(16.dp))
     }
+}
+
+@Composable
+fun PickImageFromGallery(
+    modifier: Modifier,
+    imageUri: Uri?,
+    bitmap: Bitmap?,
+    onUriChanged: (Uri?) -> Unit,
+    onBitmapChanged: (Bitmap) -> Unit
+) {
+
+    val context = LocalContext.current
+    val launcher =
+        rememberLauncherForActivityResult(contract = ActivityResultContracts.GetContent()) { uri: Uri? ->
+            onUriChanged(uri)
+        }
+
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        imageUri?.let {
+            val source = ImageDecoder.createSource(context.contentResolver, it)
+            onBitmapChanged(ImageDecoder.decodeBitmap(source))
+
+            bitmap?.let { btm ->
+                Image(
+                    bitmap = btm.asImageBitmap(),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .size(400.dp)
+                        .padding(20.dp)
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        Button(onClick = { launcher.launch("image/*") }) {
+            Text(text = "Imagen de Perfil")
+        }
+    }
+
 }

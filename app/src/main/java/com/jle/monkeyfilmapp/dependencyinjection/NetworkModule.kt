@@ -1,4 +1,4 @@
-package com.jle.monkeyfilmapp.core.network.dependencyInjection
+package com.jle.monkeyfilmapp.dependencyinjection
 
 /*import com.jle.monkeyfilmapp.login.data.network.LoginClient
 import dagger.Module

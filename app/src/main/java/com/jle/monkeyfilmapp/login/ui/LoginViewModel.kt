@@ -6,13 +6,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jle.monkeyfilmapp.login.domin.usecases.HasTokenUseCase
 import com.jle.monkeyfilmapp.login.domin.usecases.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase) :ViewModel() {
+class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase, private val hasTokenUseCase: HasTokenUseCase) :ViewModel() {
 
     private val _email = MutableLiveData<String>()
     val email : LiveData<String> = _email
@@ -25,6 +26,12 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase)
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading:LiveData<Boolean> = _isLoading
+
+    init {
+        viewModelScope.launch {
+            hasTokenUseCase()
+        }
+    }
 
     fun onLoginChanged(email:String, password:String){
         _email.value = email
@@ -39,7 +46,6 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase)
         viewModelScope.launch {
             _isLoading.value = true
             val result = loginUseCase(email.value!!, password.value!!)
-            Log.i("DAM", "Se ha completado el envio de datos y es: $result")
             if(result) {
                 Log.i("DAM", "Se ha completado el envio de datos")
             }

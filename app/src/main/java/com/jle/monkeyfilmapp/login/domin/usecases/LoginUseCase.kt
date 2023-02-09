@@ -5,10 +5,5 @@ import javax.inject.Inject
 
 class LoginUseCase @Inject constructor(private val repository:LoginRepository){
 
-    suspend operator fun invoke(phone: String, password: String): Boolean {
-        return if (repository.getConnectionToken("token"))
-            true
-        else
-         repository.doLogin(phone, password)
-    }
+    suspend operator fun invoke(phone: String, password: String): Boolean = repository.doLogin(phone, password)
 }

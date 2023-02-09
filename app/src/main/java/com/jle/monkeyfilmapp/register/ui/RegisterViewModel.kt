@@ -1,12 +1,13 @@
 package com.jle.monkeyfilmapp.register.ui
 
+import android.graphics.Bitmap
+import android.net.Uri
 import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jle.monkeyfilmapp.register.domin.entities.UserModel
 import com.jle.monkeyfilmapp.register.domin.entities.UserModelFactory
 import com.jle.monkeyfilmapp.register.domin.usecases.RegisterUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +18,7 @@ import javax.inject.Inject
 class RegisterViewModel @Inject constructor(
     private val registerUseCase: RegisterUseCase,
     private val userModelFactory: UserModelFactory
-    ) :
+) :
     ViewModel() {
 
     private val _phone = MutableLiveData<String>()
@@ -52,6 +53,16 @@ class RegisterViewModel @Inject constructor(
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
+
+    private val _imageUri = MutableLiveData<Uri>()
+    val imageUri: LiveData<Uri> = _imageUri
+
+    private val _bitmap = MutableLiveData<Bitmap>()
+    val bitmap: LiveData<Bitmap> = _bitmap
+
+    private val _image = MutableLiveData<Bitmap>()
+    val image: LiveData<Bitmap> = _image
+
 
     fun onRegisterChanged(
         name: String,
@@ -118,5 +129,13 @@ class RegisterViewModel @Inject constructor(
             }
             _isLoading.value = false
         }
+    }
+
+    fun changeImageUri(uri: Uri?) {
+        _imageUri.value = uri
+    }
+
+    fun changeBitmap(bitmap: Bitmap?) {
+        _bitmap.value = bitmap
     }
 }

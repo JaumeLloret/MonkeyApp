@@ -1,4 +1,4 @@
-package com.jle.monkeyfilmapp.login.data.db
+package com.jle.monkeyfilmapp.login.data.datastorage
 
 interface IUserPreferences {
     suspend fun addToken(key: String, value: String)

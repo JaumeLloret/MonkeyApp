@@ -1,4 +1,4 @@
-package com.jle.monkeyfilmapp.login.data.dto
+package com.jle.monkeyfilmapp.login.data.network.dto
 
 data class UserDTO(
     val name: String,
@@ -6,5 +6,4 @@ data class UserDTO(
     val birthdate: String,
     val genre: String,
     val preferences: List<String>,
-    val email: String,
-    val password: String)
+    val email: String)
