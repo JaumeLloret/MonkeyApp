@@ -7,14 +7,29 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import es.iesperemaria.monkeyapp.login.domin.HasTokenUseCase
+import es.iesperemaria.monkeyapp.login.domin.HasUserLoggedUseCase
 import es.iesperemaria.monkeyapp.login.domin.LoginUseCase
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val loginUseCase: LoginUseCase
+    private val loginUseCase: LoginUseCase,
+    private val hasTokenUseCase: HasTokenUseCase,
+    private val hasUserLoggedUseCase: HasUserLoggedUseCase
     ) : ViewModel() {
+
+    init {
+        viewModelScope.launch {
+            if(hasTokenUseCase()) {
+                Log.i("LOGGED","Tenemos token")
+            }
+            if(hasUserLoggedUseCase()) {
+                Log.i("LOGGED", "Habemus Usuario")
+            }
+        }
+    }
 
     private val _email = MutableLiveData<String>()
     val email: LiveData<String> = _email

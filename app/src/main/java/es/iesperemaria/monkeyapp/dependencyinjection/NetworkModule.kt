@@ -1,4 +1,4 @@
-package es.iesperemaria.monkeyapp.core.network.dependencyInjection
+package es.iesperemaria.monkeyapp.dependencyinjection
 
 import dagger.Module
 import dagger.Provides
